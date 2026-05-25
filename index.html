@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂木ジュン Official Website | Let's Goal Your Life!</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif; background: #fff; overflow-x: hidden; }
+
+  /* ヘッダー */
+  header {
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a6e 50%, #0a1628 100%);
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #c8a227;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 900;
+    color: #c8a227;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(200,162,39,0.5);
+  }
+  .logo span { color: #fff; font-size: 13px; display: block; letter-spacing: 4px; font-weight: 400; }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #c8a227; }
+  .nav-cta {
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628 !important;
+    padding: 8px 18px;
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 12px !important;
+    animation: pulse-gold 2s infinite;
+  }
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200,162,39,0.7); }
+    50% { box-shadow: 0 0 0 8px rgba(200,162,39,0); }
+  }
+
+  /* ポップアップ */
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+  #popup-overlay.show { display: flex; }
+  .popup-box {
+    background: linear-gradient(135deg, #fff 0%, #fff8e7 100%);
+    border: 4px solid #c8a227;
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: popup-in 0.4s ease;
+  }
+  @keyframes popup-in {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .popup-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+  }
+  .popup-box h2 { font-size: 22px; color: #c8a227; margin-bottom: 10px; }
+  .popup-box p { font-size: 14px; color: #333; margin-bottom: 15px; line-height: 1.8; }
+  .popup-urgent { color: #cc0000; font-weight: 900; font-size: 18px; margin-bottom: 20px; }
+  .popup-btn {
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .popup-skip { font-size: 11px; color: #999; margin-top: 12px; cursor: pointer; text-decoration: underline; display: block; }
+
+  /* ヒーロー */
+  .hero {
+    background:
+      linear-gradient(to bottom, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.6) 60%, rgba(10,22,40,0.9) 100%),
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><rect fill="%23228B22" width="800" height="500"/><ellipse cx="400" cy="250" rx="360" ry="220" fill="none" stroke="%23fff" stroke-width="3" opacity="0.3"/><line x1="400" y1="30" x2="400" y2="470" stroke="%23fff" stroke-width="2" opacity="0.3"/><rect x="160" y="150" width="80" height="200" fill="none" stroke="%23fff" stroke-width="2" opacity="0.4"/><rect x="560" y="150" width="80" height="200" fill="none" stroke="%23fff" stroke-width="2" opacity="0.4"/></svg>');
+    background-size: cover;
+    background-position: center;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+  }
+  .hero-content { max-width: 800px; }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 5px 18px;
+    border-radius: 20px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+  }
+  .hero-sub {
+    color: #c8a227;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 72px);
+    color: #fff;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+  }
+  .hero h1 em {
+    color: #c8a227;
+    font-style: normal;
+    display: block;
+    font-size: 85%;
+  }
+  .hero-en {
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.85);
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px; }
+  .btn-primary {
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    padding: 18px 40px;
+    font-size: 17px;
+    font-weight: 900;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(200,162,39,0.4);
+    transition: transform 0.2s;
+    letter-spacing: 1px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    padding: 18px 40px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.3s;
+  }
+  .btn-secondary:hover { border-color: #c8a227; color: #c8a227; }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 30px;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 36px; font-weight: 900; color: #c8a227; }
+  .hero-stat .num sup { font-size: 16px; }
+  .hero-stat .label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 2px; margin-top: 4px; }
+
+  /* タイマー */
+  .timer-bar {
+    background: linear-gradient(135deg, #cc0000, #ee2200);
+    padding: 12px 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .timer-bar span { color: #ffe066; font-size: 20px; font-weight: 900; margin: 0 5px; }
+  #countdown { display: inline; }
+
+  /* セクション共通 */
+  section { padding: 80px 20px; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    color: #c8a227;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    border-bottom: 2px solid #c8a227;
+    padding-bottom: 4px;
+    margin-bottom: 15px;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 900;
+    color: #0a1628;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .section-sub { color: #777; font-size: 14px; margin-bottom: 50px; letter-spacing: 1px; }
+
+  /* メディア掲載 */
+  .media-section { background: #f7f5f0; padding: 40px 20px; }
+  .media-label { text-align: center; font-size: 11px; color: #aaa; letter-spacing: 4px; margin-bottom: 25px; }
+  .media-logos {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .media-logo {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 12px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* プロフィール */
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media (max-width: 700px) { .profile-grid { grid-template-columns: 1fr; } }
+  .profile-img-wrap {
+    position: relative;
+    border: 4px solid #c8a227;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 #0a1628;
+  }
+  .profile-placeholder {
+    width: 100%;
+    padding-bottom: 120%;
+    background: linear-gradient(135deg, #1a3a6e 0%, #0a1628 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-placeholder-inner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .jersey {
+    font-size: 70px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+  .jersey-name {
+    color: #c8a227;
+    font-size: 12px;
+    letter-spacing: 6px;
+    font-weight: 900;
+  }
+  .jersey-num { color: rgba(255,255,255,0.2); font-size: 80px; font-weight: 900; position: absolute; bottom: 10px; right: 15px; }
+  .profile-year-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .awards { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .award-badge {
+    background: linear-gradient(135deg, #fff8e7, #fff);
+    border: 2px solid #c8a227;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 900;
+    color: #0a1628;
+    line-height: 1.3;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(200,162,39,0.3);
+  }
+  .award-badge .star { font-size: 14px; color: #c8a227; }
+  .profile-name { font-size: 42px; font-weight: 900; color: #0a1628; margin-bottom: 5px; }
+  .profile-en { font-size: 13px; color: #aaa; letter-spacing: 5px; margin-bottom: 20px; }
+  .profile-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag {
+    background: #0a1628;
+    color: #c8a227;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .profile-text { font-size: 15px; line-height: 2; color: #444; }
+  .profile-text strong { color: #0a1628; }
+  .history { margin-top: 30px; border-left: 3px solid #c8a227; padding-left: 20px; }
+  .history-item { margin-bottom: 12px; }
+  .history-item .year { font-size: 11px; color: #c8a227; font-weight: 700; letter-spacing: 2px; }
+  .history-item .desc { font-size: 14px; color: #333; }
+
+  /* サービス */
+  .services-section { background: linear-gradient(135deg, #0a1628 0%, #1a3a6e 100%); }
+  .services-section .section-tag { color: #c8a227; }
+  .services-section h2.section-title { color: #fff; }
+  .services-section .section-sub { color: rgba(255,255,255,0.5); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,162,39,0.3);
+    border-radius: 6px;
+    padding: 30px;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:hover { transform: translateY(-5px); border-color: #c8a227; }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c8a227, #f0d060);
+  }
+  .service-popular {
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    background: #cc0000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 35px;
+    transform: rotate(35deg);
+    letter-spacing: 2px;
+  }
+  .service-icon { font-size: 36px; margin-bottom: 15px; }
+  .service-card h3 { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+  .service-card .service-en { font-size: 10px; color: rgba(200,162,39,0.6); letter-spacing: 3px; margin-bottom: 15px; }
+  .service-card p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.9; margin-bottom: 20px; }
+  .service-price { font-size: 30px; font-weight: 900; color: #c8a227; }
+  .service-price span { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .service-detail { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .service-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    padding: 12px;
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    letter-spacing: 1px;
+  }
+
+  /* 残席表示 */
+  .seats-left {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .seats-alert {
+    display: inline-block;
+    background: rgba(204,0,0,0.15);
+    border: 2px solid #cc0000;
+    border-radius: 4px;
+    padding: 12px 30px;
+    color: #ff6666;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 2px;
+    animation: blink-red 1.5s infinite;
+  }
+  @keyframes blink-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* お客様の声 */
+  .voice-section { background: #fafaf7; }
+  .voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+  .voice-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 28px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    border-left: 4px solid #c8a227;
+    position: relative;
+  }
+  .voice-quote { font-size: 50px; color: #c8a227; line-height: 0.5; margin-bottom: 15px; font-family: serif; opacity: 0.5; }
+  .voice-card p { font-size: 14px; line-height: 1.9; color: #444; margin-bottom: 20px; }
+  .voice-stars { color: #f5c518; font-size: 16px; margin-bottom: 10px; letter-spacing: 3px; }
+  .voice-person { display: flex; align-items: center; gap: 12px; }
+  .voice-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ddd, #ccc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .voice-name { font-size: 13px; font-weight: 700; color: #0a1628; }
+  .voice-meta { font-size: 11px; color: #aaa; }
+  .voice-disclaimer { text-align: center; margin-top: 25px; font-size: 11px; color: #bbb; }
+
+  /* 企業実績 */
+  .corp-section { padding: 60px 20px; background: #fff; }
+  .corp-label { text-align: center; font-size: 11px; color: #bbb; letter-spacing: 4px; margin-bottom: 25px; }
+  .corp-logos { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+  .corp-logo {
+    width: 100px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%) blur(1.5px);
+    opacity: 0.4;
+    font-size: 10px;
+    font-weight: 900;
+    color: #555;
+  }
+
+  /* ブログ */
+  .blog-section { background: #fff; }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+  .blog-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .blog-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .blog-thumb {
+    height: 160px;
+    background: linear-gradient(135deg, #1a3a6e 0%, #0a1628 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+  }
+  .blog-thumb-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(10,22,40,0.8);
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+  }
+  .blog-body { padding: 20px; }
+  .blog-date { font-size: 11px; color: #aaa; margin-bottom: 8px; }
+  .blog-stale { display: inline-block; background: #fff0f0; color: #cc6666; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; font-weight: 700; }
+  .blog-title { font-size: 16px; font-weight: 900; color: #0a1628; margin-bottom: 10px; line-height: 1.5; }
+  .blog-excerpt { font-size: 13px; color: #777; line-height: 1.8; }
+  .blog-more { text-align: center; margin-top: 30px; }
+  .blog-more a { color: #c8a227; font-size: 13px; font-weight: 700; text-decoration: none; border-bottom: 2px solid #c8a227; padding-bottom: 2px; }
+  .blog-notice { text-align: center; margin-top: 15px; font-size: 12px; color: #ccc; }
+
+  /* FAQ */
+  .faq-section { background: #f7f5f0; }
+  .faq-list { max-width: 700px; margin: 0 auto; }
+  .faq-item { margin-bottom: 20px; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+  .faq-q {
+    background: #fff;
+    padding: 20px 25px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0a1628;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .faq-q::before { content: 'Q.'; color: #c8a227; font-size: 18px; flex-shrink: 0; }
+  .faq-a {
+    background: #fafaf7;
+    padding: 20px 25px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    border-top: 1px solid #e8e8e8;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .faq-a::before { content: 'A.'; color: #0a1628; font-weight: 900; font-size: 18px; flex-shrink: 0; }
+
+  /* LINE */
+  .line-section {
+    background: #06c755;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .line-section h2 { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 10px; line-height: 1.5; }
+  .line-section p { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 25px; }
+  .line-gift {
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto 25px;
+  }
+  .line-gift-title { color: #fff; font-weight: 900; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+  .line-gift-items { list-style: none; color: rgba(255,255,255,0.9); font-size: 14px; text-align: left; line-height: 2.2; }
+  .line-gift-items li::before { content: '✓ '; color: #fff176; font-weight: 900; }
+  .line-btn {
+    display: inline-block;
+    background: #fff;
+    color: #06c755;
+    padding: 16px 45px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .line-note { color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 12px; }
+
+  /* メルマガ */
+  .mail-section {
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a6e 100%);
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .mail-section h2 { font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+  .mail-section p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 25px; }
+  .mail-count { color: #c8a227; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
+  .mail-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 500px; margin: 0 auto 15px; }
+  .mail-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+  }
+  .mail-form button {
+    background: linear-gradient(135deg, #c8a227, #f0d060);
+    color: #0a1628;
+    border: none;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 900;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .mail-disclaimer { color: rgba(255,255,255,0.3); font-size: 11px; }
+  .mail-content-note { color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 15px; font-style: italic; }
+
+  /* フッター */
+  footer {
+    background: #050d1a;
+    padding: 50px 20px 30px;
+    text-align: center;
+  }
+  .footer-logo { color: #c8a227; font-size: 24px; font-weight: 900; letter-spacing: 2px; margin-bottom: 20px; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+  .footer-links a { color: rgba(255,255,255,0.4); font-size: 12px; text-decoration: none; }
+  .footer-links a:hover { color: #c8a227; }
+  .footer-sns { display: flex; gap: 15px; justify-content: center; margin-bottom: 35px; }
+  .sns-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .sns-btn:hover { background: rgba(200,162,39,0.2); }
+  .footer-disclaimer {
+    font-size: 9px;
+    color: rgba(255,255,255,0.15);
+    line-height: 2;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+  .footer-copy { color: rgba(255,255,255,0.2); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<!-- ポップアップ（3秒後表示） -->
+<div id="popup-overlay">
+  <div class="popup-box">
+    <span class="popup-close" onclick="closePopup()">×</span>
+    <div style="font-size:36px;margin-bottom:10px;">⚠️</div>
+    <h2>まだ間に合います！</h2>
+    <p>現在、<strong>桂木ジュン メンタルコーチングセッション</strong><br>の無料相談が<strong>残り2枠</strong>となっております。</p>
+    <p class="popup-urgent">今月中の申込で<br>通常¥49,800 → <span style="font-size:26px;">¥39,800</span></p>
+    <button class="popup-btn" onclick="closePopup()">今すぐ無料相談を予約する</button>
+    <span class="popup-skip" onclick="closePopup()">今は必要ありません（人生を変えるチャンスを見送る）</span>
+  </div>
+</div>
+
+<!-- ヘッダー -->
+<header>
+  <div class="logo">
+    KATSUGI JUN
+    <span>OFFICIAL WEBSITE</span>
+  </div>
+  <nav>
+    <a href="#">プロフィール</a>
+    <a href="#">サービス</a>
+    <a href="#">実績</a>
+    <a href="#">ブログ</a>
+    <a href="#" class="nav-cta">無料相談はこちら</a>
+  </nav>
+</header>
+
+<!-- タイマーバー -->
+<div class="timer-bar">
+  🔥 期間限定キャンペーン実施中！終了まで：<span id="countdown">02:47:13</span>　先着5名様限定価格
+</div>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ OFFICIAL SITE ✦</div>
+    <div class="hero-sub">元Jリーガー・ライフプロデューサー・経営アドバイザー</div>
+    <h1>
+      あなたの人生に、<br>
+      <em>シュートを放て。</em>
+    </h1>
+    <div class="hero-en">"Let's Goal Your Life!" — Katsugi Jun</div>
+    <p>
+      ピッチで培った「勝つためのメンタル」を、<br>
+      あなたのビジネスと人生に。<br>
+      月収100万円は、ゴールではなく<strong style="color:#c8a227;">通過点</strong>に過ぎない。
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">無料相談を予約する（残り2枠）</a>
+      <a href="#" class="btn-secondary">まず実績を見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">847<sup>名</sup></div>
+        <div class="label">メルマガ読者数</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">3<sup>年</sup></div>
+        <div class="label">現役引退からの活動期間</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">12<sup>本</sup></div>
+        <div class="label">現役通算ゴール数</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メディア掲載 -->
+<div class="media-section">
+  <div class="media-label">▼ MEDIA COVERAGE ▼ 各メディアに取り上げられています</div>
+  <div class="media-logos">
+    <div class="media-logo">地元FM</div>
+    <div class="media-logo">ライフスタイル<br>マガジン北陸</div>
+    <div class="media-logo">CS723ch<br>スポーツドキュメント</div>
+    <div class="media-logo">ゆきぐに<br>フリーペーパー</div>
+    <div class="media-logo">Yahoo!<br>ニュース(個人)</div>
+    <div class="media-logo">街の情報誌<br>おでかけPLUS</div>
+  </div>
+</div>
+
+<!-- プロフィール -->
+<section id="profile">
+  <div class="section-inner">
+    <div class="section-tag">PROFILE</div>
+    <h2 class="section-title">成功とは何か？<br>それは私が一番よく知っている。</h2>
+    <div class="section-sub">The man who scored 12 goals for local team</div>
+    <div class="profile-grid">
+      <div>
+        <div class="profile-img-wrap">
+          <div class="profile-placeholder">
+            <div class="profile-placeholder-inner">
+              <div class="jersey">⚽</div>
+              <div class="jersey-name">KATSUGI #10</div>
+              <div style="color:rgba(200,162,39,0.4);font-size:11px;letter-spacing:3px;margin-top:8px;">2008-2020</div>
+            </div>
+            <div class="jersey-num">10</div>
+          </div>
+          <div class="profile-year-badge">現役時代の写真</div>
+        </div>
+        <div class="awards">
+          <div class="award-badge">
+            <div class="star">★</div>
+            第3回<br>ライフデザイン<br>大賞受賞
+          </div>
+          <div class="award-badge">
+            <div class="star">★</div>
+            北陸ビジネス<br>アワード<br>2023
+          </div>
+          <div class="award-badge">
+            <div class="star">★</div>
+            メンタル<br>コーチング<br>認定証
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="profile-name">桂木 ジュン</div>
+        <div class="profile-en">KATSUGI JUN</div>
+        <div class="profile-tags">
+          <span class="tag">元Jリーガー</span>
+          <span class="tag">経営アドバイザー</span>
+          <span class="tag">メンタルコーチ</span>
+          <span class="tag">美容プロデューサー</span>
+          <span class="tag">投資家</span>
+        </div>
+        <div class="profile-text">
+          1984年富山県生まれ。<strong>12年間のプロサッカー人生</strong>で培った「限界を超えるメンタリティ」を武器に、2021年から<strong>人生改革プロデューサー</strong>として活動開始。<br><br>
+          「ピッチで12点取った男が、人生でもゴールを決め続ける」という信念のもと、<strong>メンタルコーチング・経営コンサルティング・美容・投資</strong>の4分野で日本全国を飛び回る（主にオンライン）。<br><br>
+          著書執筆中。セミナー・講演依頼は年間<strong>数件</strong>に上り（実績写真は準備中）、受講生からの変化報告が<strong>毎月届いている</strong>（要問合せ）。
+        </div>
+        <div class="history">
+          <div class="history-item">
+            <div class="year">2008</div>
+            <div class="desc">北陸FC（架空）に入団。J3リーグでプロデビュー</div>
+          </div>
+          <div class="history-item">
+            <div class="year">2016</div>
+            <div class="desc">現役通算10ゴールを達成。地元紙に掲載される</div>
+          </div>
+          <div class="history-item">
+            <div class="year">2020</div>
+            <div class="desc">現役引退。「第二の人生」を決意</div>
+          </div>
+          <div class="history-item">
+            <div class="year">2021</div>
+            <div class="desc">メンタルコーチング・経営コンサル・投資・美容プロデュースをほぼ同時に開始</div>
+          </div>
+          <div class="history-item">
+            <div class="year">2023</div>
+            <div class="desc">第3回ライフデザイン大賞受賞（主催：桂木ジュンオフィシャルファンクラブ準備委員会）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 企業実績 -->
+<div class="corp-section">
+  <div class="section-inner">
+    <div class="corp-label">▼ CORPORATE CLIENTS ▼ 錚々たる企業様にご利用いただいております</div>
+    <div class="corp-logos">
+      <div class="corp-logo">株式会社○○</div>
+      <div class="corp-logo">△△コーポ<br>レーション</div>
+      <div class="corp-logo">□□グループ</div>
+      <div class="corp-logo">◎◎ホールデ<br>ィングス</div>
+      <div class="corp-logo">××インター<br>ナショナル</div>
+    </div>
+    <p style="text-align:center;font-size:10px;color:#ccc;margin-top:12px;">※守秘義務のため企業名・ロゴは非公開とさせていただいております</p>
+  </div>
+</div>
+
+<!-- サービス -->
+<section class="services-section">
+  <div class="section-inner">
+    <div class="section-tag" style="color:#c8a227;">SERVICE</div>
+    <h2 class="section-title" style="color:#fff;">あなたに必要な変革を、<br>すべてここに。</h2>
+    <div class="section-sub">Which goal do you want to shoot?</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-popular">人気No.1</div>
+        <div class="service-icon">🧠</div>
+        <h3>メンタルコーチング<br>セッション</h3>
+        <div class="service-en">MENTAL COACHING SESSION</div>
+        <p>現役時代に培った「勝者のメンタル」を1対1でお伝えします。あなたが今抱えている悩みの<strong style="color:#c8a227;">90%は考え方の問題</strong>です。</p>
+        <div class="service-price">¥49,800<span>/回（60分）</span></div>
+        <div class="service-detail">※Zoom。録画不可。成果は保証いたしかねます。</div>
+        <button class="service-btn">今すぐ申し込む</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>経営コンサルティング</h3>
+        <div class="service-en">MANAGEMENT CONSULTING</div>
+        <p>チームを勝利に導いてきたマネジメント論を、あなたの会社に。月1回のZoomミーティングで<strong style="color:#c8a227;">売上は変わる</strong>はずです。</p>
+        <div class="service-price">¥98,000<span>/月</span></div>
+        <div class="service-detail">※Zoom1回込み。資料作成は別途。</div>
+        <button class="service-btn">詳細を確認する</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💹</div>
+        <h3>投資マインド<br>セミナー</h3>
+        <div class="service-en">INVESTMENT MINDSET SEMINAR</div>
+        <p>「投資はメンタルゲームだ」——現役引退後、私が最初に気づいた真実。投資の<strong style="color:#c8a227;">本質的な考え方</strong>をお伝えします（具体的銘柄等はお伝えしません）。</p>
+        <div class="service-price">¥29,800<span>/回</span></div>
+        <div class="service-detail">※投資は自己責任です。収益を保証するものではありません。</div>
+        <button class="service-btn">参加を検討する</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>桂木式<br>美容プロデュース</h3>
+        <div class="service-en">JUN'S BEAUTY PRODUCE</div>
+        <p>「輝いているアスリートに学ぶ本物の美しさ」。内面から溢れ出る輝きを取り戻す<strong style="color:#c8a227;">オリジナルプログラム</strong>（内容は個別にご説明します）。</p>
+        <div class="service-price">¥15,000<span>/月</span></div>
+        <div class="service-detail">※詳細はお問い合わせください。</div>
+        <button class="service-btn">気になる</button>
+      </div>
+      <div class="service-card" style="grid-column: 1 / -1; background: rgba(200,162,39,0.05); border-color: rgba(200,162,39,0.6);">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;">
+            <div class="service-icon">🏆</div>
+            <h3 style="color:#c8a227;">桂木ジュン<br>オンラインサロン「GOAL」</h3>
+            <div class="service-en">ONLINE SALON "GOAL"</div>
+            <p>仲間と共に成長するコミュニティ。<strong style="color:#c8a227;">毎月1回</strong>、桂木からメンバー限定ブログが届きます。あとはメンバー同士で盛り上がってください。</p>
+          </div>
+          <div style="text-align:center;min-width:180px;">
+            <div class="service-price" style="font-size:36px;">¥3,980<span>/月</span></div>
+            <div class="service-detail">現在のメンバー数：<strong style="color:#c8a227;">23名</strong></div>
+            <button class="service-btn" style="margin-top:15px;">サロンに参加する</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seats-left">
+      <div class="seats-alert">⚠ 今月のコーチング枠：残り 2 席</div>
+    </div>
+  </div>
+</section>
+
+<!-- お客様の声 -->
+<section class="voice-section">
+  <div class="section-inner">
+    <div class="section-tag">VOICE</div>
+    <h2 class="section-title">受講生の声</h2>
+    <div class="section-sub">Real voices from real winners (probably)</div>
+    <div class="voices-grid">
+      <div class="voice-card">
+        <div class="voice-quote">"</div>
+        <div class="voice-stars">★★★★★</div>
+        <p>桂木さんのコーチングを受けてから、<strong>人生が変わりました！</strong>以前の私とは別人のようです。あの時申し込んで本当によかった。感謝しかありません。</p>
+        <div class="voice-person">
+          <div class="voice-avatar">👤</div>
+          <div>
+            <div class="voice-name">田中様</div>
+            <div class="voice-meta">30代・会社員・男性</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-quote">"</div>
+        <div class="voice-stars">★★★★★</div>
+        <p>投資セミナーに参加しました。<strong>考え方が根本から変わりました！</strong>具体的に何がどう変わったかは上手く言えないのですが、とにかくすごかったです。</p>
+        <div class="voice-person">
+          <div class="voice-avatar">👤</div>
+          <div>
+            <div class="voice-name">田中様</div>
+            <div class="voice-meta">40代・自営業・女性</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-quote">"</div>
+        <div class="voice-stars">★★★★★</div>
+        <p>経営コンサルを3ヶ月お願いしました。桂木さんの言葉は刺さります。<strong>ズームの画面越しでも熱量が伝わりました！</strong>（Zoom画面が固まることが多かったのですが…）</p>
+        <div class="voice-person">
+          <div class="voice-avatar">👤</div>
+          <div>
+            <div class="voice-name">田中様</div>
+            <div class="voice-meta">50代・経営者・男性</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="voice-disclaimer">※個人の感想です。効果・成果には個人差があります。</div>
+  </div>
+</section>
+
+<!-- ブログ -->
+<section class="blog-section">
+  <div class="section-inner">
+    <div class="section-tag">BLOG</div>
+    <h2 class="section-title">桂木ジュンの想い</h2>
+    <div class="section-sub">Words from the field — last updated Aug 2024</div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-thumb">
+          ⚽
+          <div class="blog-thumb-label">MENTAL</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">2024.08.03<span class="blog-stale">8ヶ月前</span></div>
+          <div class="blog-title">成功の法則②｜努力は絶対に裏切らない、という話</div>
+          <div class="blog-excerpt">前回に続き、成功の法則についてお話しします。結論から言うと、努力は裏切りません。私のサッカー人生がそれを証明して…</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb">
+          💪
+          <div class="blog-thumb-label">MINDSET</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">2024.06.18<span class="blog-stale">10ヶ月前</span></div>
+          <div class="blog-title">成功の法則①｜まず動くことが大事という話</div>
+          <div class="blog-excerpt">みなさんこんにちは。桂木ジュンです。今日は「成功の法則」の第1回目をお届けします。まず大事なのは動くこと。思い立ったら吉日と…</div>
+        </div>
+      </div>
+      <div class="blog-card" style="opacity:0.5;">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#333,#222);">
+          ✍️
+          <div class="blog-thumb-label">COMING SOON</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">（近日公開）</div>
+          <div class="blog-title">成功の法則③（準備中）</div>
+          <div class="blog-excerpt">お待たせしております。現在執筆中です。もうしばらくお待ちください。</div>
+        </div>
+      </div>
+    </div>
+    <div class="blog-more">
+      <a href="#">過去の記事を見る（全2件）</a>
+    </div>
+    <div class="blog-notice">※ブログは不定期更新です（目標：月1回）</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="section-sub">Your questions, answered.</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">料金が高いと感じるのですが…</div>
+        <div class="faq-a">おっしゃる気持ちはわかります。でも考えてみてください。私はJリーグで12年間プレーしました。その経験は、お金には換算できません。逆に言えば、¥49,800は安すぎるくらいだと私は思っています。あなたの人生は、それ以上の価値があるはずです。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">成果は保証されますか？</div>
+        <div class="faq-a">成果は個人差がございます。保証はいたしかねますが、「変わりたい」という強い意志があれば、必ず変わることができます。それを信じていただける方に来ていただきたいと思っております。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">経営の実績はありますか？</div>
+        <div class="faq-a">サッカーのチームマネジメントは立派な経営です。11人をまとめ、1つのゴールに向かう。それはビジネスも同じです。私は12年間、毎年それをやり続けてきました。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">美容のご経歴は？</div>
+        <div class="faq-a">アスリートとして常に「見られる仕事」をしてきました。体のコンディション管理、肌の管理は誰よりもやってきた自負があります。詳細はご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">投資の実績を教えてください</div>
+        <div class="faq-a">具体的な数字のご開示は控えさせていただいております。セミナーでお伝えするのは「投資のマインドセット」ですので、実績よりも考え方が重要です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINE登録 -->
+<div class="line-section">
+  <div class="section-inner" style="max-width:600px;">
+    <div style="font-size:48px;margin-bottom:15px;">📲</div>
+    <h2>LINE登録で豪華特典プレゼント！<br>今だけ3大特典つき</h2>
+    <p>登録は無料！いつでも解除できます（でも解除しないでください）</p>
+    <div class="line-gift">
+      <div class="line-gift-title">▼ 登録特典（3大プレゼント） ▼</div>
+      <ul class="line-gift-items">
+        <li>桂木ジュン直筆サイン色紙（データ）</li>
+        <li>特別動画「成功の扉を開く7つのカギ」（11分）</li>
+        <li>初回コーチング相談 1,000円OFF クーポン</li>
+      </ul>
+    </div>
+    <a href="#" class="line-btn">📩 LINEで友だち追加する</a>
+    <div class="line-note">※特典は予告なく変更・終了する場合があります</div>
+  </div>
+</div>
+
+<!-- メルマガ -->
+<div class="mail-section">
+  <div class="section-inner">
+    <div style="font-size:11px;color:#c8a227;letter-spacing:4px;margin-bottom:12px;">WEEKLY NEWSLETTER</div>
+    <h2>週刊・桂木通信</h2>
+    <p>毎週月曜朝に届く、桂木ジュンからの「一言」。<br>登録者だけが手にできる、未公開の気づきをお届けします。</p>
+    <div class="mail-count">現在の読者数：<strong>847名</strong>（目標1,000名達成まで、もう少し！）</div>
+    <div class="mail-form">
+      <input type="email" placeholder="メールアドレスを入力">
+      <button>無料で登録する</button>
+    </div>
+    <div class="mail-disclaimer">スパムは送りません（週1〜3通程度）</div>
+    <div class="mail-content-note">※主な内容：桂木が見たYouTubeの感想・最近食べたもの・サッカー観戦の記録</div>
+  </div>
+</div>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo">KATSUGI JUN</div>
+  <div class="footer-links">
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">特定商取引法に基づく表示</a>
+    <a href="#">お問い合わせ</a>
+    <a href="#">運営会社</a>
+    <a href="#">採用情報</a>
+  </div>
+  <div class="footer-sns">
+    <a class="sns-btn" href="#" title="X(旧Twitter)">𝕏</a>
+    <a class="sns-btn" href="#" title="Instagram">📷</a>
+    <a class="sns-btn" href="#" title="YouTube">▶</a>
+    <a class="sns-btn" href="#" title="TikTok">🎵</a>
+    <a class="sns-btn" href="#" title="Facebook">f</a>
+  </div>
+  <div class="footer-disclaimer">
+    ※本サービスは収入・成果・効果を保証するものではありません。個人の感想であり、効果には個人差があります。投資は自己責任です。元本割れのリスクがあります。掲載されている受講者の声は個人の体験であり、すべての方に同様の効果が見込まれるわけではありません。メンタルコーチングは医療行為ではありません。精神的な問題については専門の医療機関にご相談ください。美容プロデュースは医療行為・医薬品の使用を伴うものではありません。「第3回ライフデザイン大賞」は特定の権威ある機関が主催するものではありません。記載のメディア掲載実績はすべて事実ですが規模・影響力については各自ご判断ください。掲載の企業ロゴは守秘義務のためぼかし処理をしており実在を保証するものではありません。
+  </div>
+  <div class="footer-copy">© 2024 桂木ジュン オフィシャルサイト（個人運営）All Rights Reserved.</div>
+</footer>
+
+<script>
+  // ポップアップ（4秒後表示）
+  setTimeout(function() {
+    document.getElementById('popup-overlay').classList.add('show');
+  }, 4000);
+
+  function closePopup() {
+    document.getElementById('popup-overlay').classList.remove('show');
+  }
+
+  // カウントダウン（リロードしても変わらない）
+  var fixedTime = { h: 2, m: 47, s: 13 };
+  function formatTime(h, m, s) {
+    return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  // 一応動くが毎回リセット
+  var cd = document.getElementById('countdown');
+  var h = fixedTime.h, m = fixedTime.m, s = fixedTime.s;
+  setInterval(function() {
+    if (s > 0) { s--; }
+    else if (m > 0) { m--; s = 59; }
+    else if (h > 0) { h--; m = 59; s = 59; }
+    else {
+      // 終了したらリセット（永遠に残り時間がある）
+      h = fixedTime.h; m = fixedTime.m; s = fixedTime.s;
+    }
+    cd.textContent = formatTime(h, m, s);
+  }, 1000);
+
+  // スクロール時のヘッダー変化
+  window.addEventListener('scroll', function() {
+    var header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
